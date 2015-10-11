@@ -1,8 +1,8 @@
 This adds some code to zlib to provide in-memory unzip capability.
 
-From the zlib home page, zlib is designed to be a free, general-purpose, legally unencumbered -- that is, not covered by any patents -- lossless data-compression library for use on virtually any computer hardware and operating system. 
+From the zlib[1] home page, zlib is designed to be a free, general-purpose, legally unencumbered -- that is, not covered by any patents -- lossless data-compression library for use on virtually any computer hardware and operating system. 
 
-At minizip, I found a reference to Justin Fletcher who "wrote a very simple implementation of a memory access method for the ioapi code". I made a few edits to handle 64 bit builds. 
+At minizip[2], I found a reference to Justin Fletcher who "wrote a very simple implementation of a memory access method for the ioapi code". I made a few edits to handle 64 bit builds. 
 
 ioapi_mem.h and ioapi_mem.c are placed into the main zlib build directory.  I use the following to build a custom zlib (I could probably build a separate library, but it simplifies some stuff for me to include this code):
 
@@ -24,3 +24,9 @@ sudo cp ioapi.h /usr/local/include/zlib
 sudo cp ioapi_mem.h /usr/local/include/zlib
 sudo cp unzip.h /usr/local/include/zlib
 </pre>
+
+Some additional background info can be found at my blog[3] for some build info for visual studio (possibly out of date).
+
+[1] http://www.zlib.net/  <br>
+[2] http://www.winimage.com/zLibDll/minizip.html  <br>
+[3] http://blog.raymond.burkholder.net/index.php?/archives/598-Build-zlib-v1.2.8-with-Visual-Studio-2012.html <br>
