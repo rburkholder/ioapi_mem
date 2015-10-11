@@ -7,6 +7,12 @@ At minizip[2], I found a reference to Justin Fletcher who "wrote a very simple i
 ioapi_mem.h and ioapi_mem.c are placed into the main zlib build directory.  I use the following to build a custom zlib (I could probably build a separate library, but it simplifies some stuff for me to include this code):
 
 <pre>
+wget http://zlib.net/zlib-1.2.8.tar.gz
+tar zxvf zlib-1.2.8.tar.gz
+cd zlib-1.2.8
+
+# place the two ioapi_mem.x files in the directory, then continue with the remaining commands
+
 ln -s contrib/minizip/unzip.c unzip.c
 ln -s contrib/minizip/unzip.h unzip.h
 ln -s contrib/minizip/ioapi.c ioapi.c
@@ -15,6 +21,7 @@ ln -s contrib/minizip/ioapi.h ioapi.h
 mv Makefile.in Makefile.in.orginal
 cat Makefile.in.original | sed "s/zutil.o$/zutil.o ioapi.o ioapi_mem.o unzip.o/" > Makefile.in
 
+# build static files only, as appears to be some sort of PIC problem
 ./configure --64 --static --prefix=/usr/local --includedir=/usr/local/include/zlib
 
 make
