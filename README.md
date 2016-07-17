@@ -11,14 +11,17 @@ wget http://zlib.net/zlib-1.2.8.tar.gz
 tar zxvf zlib-1.2.8.tar.gz
 cd zlib-1.2.8
 
-# place the two ioapi_mem.x files in the directory, then continue with the remaining commands
+git clone https://github.com/rburkholder/ioapi_mem.git
+
+ln -s ioapi_mem/ioapi_mem.c ioapi_mem.c
+ln -s ioapi_mem/ioapi_mem.h ioapi_mem.h
 
 ln -s contrib/minizip/unzip.c unzip.c
 ln -s contrib/minizip/unzip.h unzip.h
 ln -s contrib/minizip/ioapi.c ioapi.c
 ln -s contrib/minizip/ioapi.h ioapi.h
 
-mv Makefile.in Makefile.in.orginal
+mv Makefile.in Makefile.in.original
 cat Makefile.in.original | sed "s/zutil.o$/zutil.o ioapi.o ioapi_mem.o unzip.o/" > Makefile.in
 
 # build static files only, as appears to be some sort of PIC problem
