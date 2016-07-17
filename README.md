@@ -21,8 +21,9 @@ ln -s contrib/minizip/unzip.h unzip.h
 ln -s contrib/minizip/ioapi.c ioapi.c
 ln -s contrib/minizip/ioapi.h ioapi.h
 
-mv Makefile.in Makefile.in.original
-cat Makefile.in.original | sed "s/zutil.o$/zutil.o ioapi.o ioapi_mem.o unzip.o/" > Makefile.in
+cp Makefile.in Makefile.in.original
+sed -i "s/zutil.o$/zutil.o ioapi.o ioapi_mem.o unzip.o/" Makefile.in
+sed -i "s/zutil.lo$/zutil.lo ioapi.lo ioapi_mem.lo unzip.lo/" Makefile.in
 
 ./configure --64 --prefix=/usr/local --includedir=/usr/local/include/zlib
 
