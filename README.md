@@ -24,8 +24,7 @@ ln -s contrib/minizip/ioapi.h ioapi.h
 mv Makefile.in Makefile.in.original
 cat Makefile.in.original | sed "s/zutil.o$/zutil.o ioapi.o ioapi_mem.o unzip.o/" > Makefile.in
 
-# build static files only, as appears to be some sort of PIC problem
-./configure --64 --static --prefix=/usr/local --includedir=/usr/local/include/zlib
+./configure --64 --prefix=/usr/local --includedir=/usr/local/include/zlib
 
 make
 sudo make install
